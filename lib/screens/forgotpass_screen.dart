@@ -138,7 +138,7 @@ class _ForgotPassState extends State<ForgotPass>
                   height: 10,
                 ),
                 Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas interdum suscipit sodales...',
+                  'Lorem ipsum dolor sit eros atos amet, consectetur adipiscing elit maecenas en interdum suscipit sodales...',
                   style: TextStyle(
                     fontSize: 14,
                   ),
