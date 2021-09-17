@@ -78,12 +78,24 @@ class _ForgotPassState extends State<ForgotPass>
     try {
       if (_fpMode == FPMode.ForgotPass) {
         // Forgot Password
+        FocusScope.of(context).unfocus();
+
         await Provider.of<Auth>(context, listen: false).forgotPass(
           _fpData['email'],
           'PASSWORD_RESET',
         );
 
-        Navigator.of(context).pushNamed('/');
+        // ignore: deprecated_member_use
+        await Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'A password reset request has been initiated for this account...',
+            ),
+            duration: Duration(seconds: 5),
+          ),
+        );
+
+        // Navigator.of(context).pushNamed('/');
       }
     } on HttpException catch (error) {
       var errorMessage = 'Authentication failed';
