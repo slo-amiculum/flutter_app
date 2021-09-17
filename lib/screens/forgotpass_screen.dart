@@ -13,14 +13,14 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black,
         ),
         elevation: 0.0,
         bottomOpacity: 0.0,
         backgroundColor: Colors.transparent,
       ),
-      body: Center(
+      body: const Center(
         child: ForgotPass(),
       ),
     );
@@ -39,24 +39,23 @@ class ForgotPass extends StatefulWidget {
 class _ForgotPassState extends State<ForgotPass>
     with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  FPMode _fpMode = FPMode.ForgotPass;
+  final FPMode _fpMode = FPMode.ForgotPass;
   final Map _fpData = {
     'email': '',
     'requestType': '',
   };
   var _isLoading = false;
-  final _passwordController = TextEditingController();
 
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('An Error Occurred!'),
+        title: const Text('An Error Occurred!'),
         content: Text(message),
         actions: <Widget>[
           // ignore: deprecated_member_use
           FlatButton(
-            child: Text('Okay'),
+            child: const Text('Okay'),
             onPressed: () {
               Navigator.of(ctx).pop();
             },
@@ -86,8 +85,8 @@ class _ForgotPassState extends State<ForgotPass>
         );
 
         // ignore: deprecated_member_use
-        await Scaffold.of(context).showSnackBar(
-          SnackBar(
+        Scaffold.of(context).showSnackBar(
+          const SnackBar(
             content: Text(
               'A password reset request has been initiated for this account...',
             ),
@@ -120,7 +119,7 @@ class _ForgotPassState extends State<ForgotPass>
     // final deviceSize = MediaQuery.of(context).size;
     return Center(
       child: Container(
-        padding: EdgeInsets.all(50.0),
+        padding: const EdgeInsets.all(50.0),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -129,22 +128,22 @@ class _ForgotPassState extends State<ForgotPass>
                 Text(
                   'Forgot Password'.toUpperCase(),
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 42,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'Lorem ipsum dolor sit eros atos amet, consectetur adipiscing elit maecenas en interdum suscipit sodales...',
                   style: TextStyle(
                     fontSize: 14,
                   ),
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email'),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value!.isEmpty || !value.contains('@')) {
@@ -155,21 +154,21 @@ class _ForgotPassState extends State<ForgotPass>
                     _fpData['email'] = value;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 if (_isLoading)
-                  CircularProgressIndicator()
+                  const CircularProgressIndicator()
                 else
                   // ignore: deprecated_member_use
                   RaisedButton(
-                    child: Text('SUBMIT'),
+                    child: const Text('SUBMIT'),
                     onPressed: _submit,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30.0, vertical: 8.0),
                     color: Theme.of(context).primaryColor,
                     textColor: Theme.of(context).primaryTextTheme.button!.color,
                   ),
