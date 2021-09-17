@@ -126,6 +126,23 @@ class _ForgotPassState extends State<ForgotPass>
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                Text(
+                  'Forgot Password'.toUpperCase(),
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 42,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas interdum suscipit sodales...',
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Email'),
                   keyboardType: TextInputType.emailAddress,
