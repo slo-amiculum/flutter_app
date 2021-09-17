@@ -76,6 +76,8 @@ class Auth with ChangeNotifier {
       );
       prefs.setString('userData', userData);
       print('Logged In - $responseData');
+      print('Expiry Date - $_expiryDate');
+      print('Is Auth? - $isAuth');
     } catch (error) {
       print('ERROR - $error');
       rethrow;
@@ -140,14 +142,19 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> logout() async {
-    _token = '';
-    _userId = '';
-    _expiryDate = '' as DateTime;
+    _token = null;
+    _userId = null;
+    _expiryDate = null;
     if (_authTimer != null) {
       _authTimer!.cancel();
-      _authTimer = '' as Timer;
+      _authTimer = null;
     }
+
     notifyListeners();
+
+    // ignore: invalid_use_of_visible_for_testing_member
+    SharedPreferences.setMockInitialValues({});
+
     final prefs = await SharedPreferences.getInstance();
     // prefs.remove('userData');
     prefs.clear();

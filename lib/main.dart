@@ -40,13 +40,17 @@ class MyApp extends StatelessWidget {
               },
             ),
           ),
-          home: SplashScreen(),
-          // home: auth.isAuth
-          //     ? DashBoardScreen()
-          //     : FutureBuilder(
-          //         future: auth.tryAutoLogin(),
-          //         builder: (ctx, authResultSnapshot) => SplashScreen(),
-          //       ),
+          // home: SplashScreen(),
+          home: auth.isAuth
+              ? DashBoardScreen()
+              : FutureBuilder(
+                  future: auth.tryAutoLogin(),
+                  builder: (ctx, authResultSnapshot) =>
+                      authResultSnapshot.connectionState ==
+                              ConnectionState.waiting
+                          ? const SplashScreen()
+                          : AuthScreen(),
+                ),
           routes: {
             AuthScreen.routeName: (ctx) => AuthScreen(),
             ForgotPasswordScreen.routeName: (ctx) => ForgotPasswordScreen(),
@@ -68,24 +72,24 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _jumpToPage();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _jumpToPage();
+  // }
 
-  Future<void> _jumpToPage() async {
-    await Future.delayed(Duration(milliseconds: 3000), () {});
-    var isLogin = Provider.of<Auth>(context, listen: false).isAuth;
+  // Future<void> _jumpToPage() async {
+  //   await Future.delayed(Duration(milliseconds: 3000), () {});
+  //   var isLogin = Provider.of<Auth>(context, listen: false).isAuth;
 
-    if (!isLogin) {
-      Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
-      print(isLogin);
-    } else {
-      Navigator.of(context).pushReplacementNamed(DashBoardScreen.routeName);
-      print(isLogin);
-    }
-  }
+  //   if (!isLogin) {
+  //     Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
+  //     print(isLogin);
+  //   } else {
+  //     Navigator.of(context).pushReplacementNamed(DashBoardScreen.routeName);
+  //     print(isLogin);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
