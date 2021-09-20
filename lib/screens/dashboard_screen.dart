@@ -22,7 +22,7 @@ class DashBoardScreen extends StatelessWidget {
           builder: (ctx, auth, _) => Column(
             children: <Widget>[
               const Text('Dashboard Screen Here!'),
-              TextButton(
+              ElevatedButton(
                 child: const Text('Logout'),
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed('/');
