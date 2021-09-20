@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +22,7 @@ class DashBoardScreen extends StatelessWidget {
           builder: (ctx, auth, _) => Column(
             children: <Widget>[
               const Text('Dashboard Screen Here!'),
-              FlatButton(
+              TextButton(
                 child: const Text('Logout'),
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed('/');

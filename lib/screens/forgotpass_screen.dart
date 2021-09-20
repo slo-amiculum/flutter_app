@@ -53,8 +53,7 @@ class _ForgotPassState extends State<ForgotPass>
         title: const Text('An Error Occurred!'),
         content: Text(message),
         actions: <Widget>[
-          // ignore: deprecated_member_use
-          FlatButton(
+          TextButton(
             child: const Text('Okay'),
             onPressed: () {
               Navigator.of(ctx).pop();
@@ -84,8 +83,7 @@ class _ForgotPassState extends State<ForgotPass>
           'PASSWORD_RESET',
         );
 
-        // ignore: deprecated_member_use
-        Scaffold.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
               'A password reset request has been initiated for this account...',
@@ -160,17 +158,16 @@ class _ForgotPassState extends State<ForgotPass>
                 if (_isLoading)
                   const CircularProgressIndicator()
                 else
-                  // ignore: deprecated_member_use
-                  RaisedButton(
+                  ElevatedButton(
                     child: const Text('SUBMIT'),
                     onPressed: _submit,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0, vertical: 8.0),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Theme.of(context).primaryTextTheme.button!.color,
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(30),
+                    // ),
+                    // padding: const EdgeInsets.symmetric(
+                    //     horizontal: 30.0, vertical: 8.0),
+                    // color: Theme.of(context).primaryColor,
+                    // textColor: Theme.of(context).primaryTextTheme.button!.color,
                   ),
               ],
             ),

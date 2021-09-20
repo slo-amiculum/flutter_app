@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +29,7 @@ class MyApp extends StatelessWidget {
           title: 'Shingrix',
           theme: ThemeData(
             primarySwatch: Colors.red,
-            accentColor: Colors.red[400],
+            accentColor: Colors.red[300],
             fontFamily: 'Lato',
             pageTransitionsTheme: PageTransitionsTheme(
               builders: {
@@ -72,25 +70,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _jumpToPage();
-  // }
-
-  // Future<void> _jumpToPage() async {
-  //   await Future.delayed(Duration(milliseconds: 3000), () {});
-  //   var isLogin = Provider.of<Auth>(context, listen: false).isAuth;
-
-  //   if (!isLogin) {
-  //     Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
-  //     print(isLogin);
-  //   } else {
-  //     Navigator.of(context).pushReplacementNamed(DashBoardScreen.routeName);
-  //     print(isLogin);
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
