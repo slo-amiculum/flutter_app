@@ -102,7 +102,6 @@ class Auth with ChangeNotifier {
         throw HttpException(responseData['error']['message']);
       }
 
-      _autoLogout();
       notifyListeners();
 
       print('Password Reset - $responseData');
