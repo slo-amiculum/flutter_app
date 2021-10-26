@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './providers/auth.dart';
+import './providers/user.dart';
+import './providers/doc_item.dart';
+import './providers/documents.dart';
 
 import './screens/auth_screen.dart';
 import './screens/forgotpass_screen.dart';
@@ -23,13 +26,27 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: Auth(),
         ),
+        ChangeNotifierProxyProvider<Auth, Documents>(
+          create: (ctx) => Documents('', '', []),
+          update: (ctx, auth, previousFiles) => Documents(
+            auth.token,
+            auth.userId,
+            previousFiles == null ? [] : previousFiles.files,
+          ),
+        ),
+        ChangeNotifierProxyProvider<Auth, User>(
+          create: (ctx) => User('', ''),
+          update: (ctx, auth, previousFiles) => User(
+            auth.token,
+            auth.userId,
+          ),
+        ),
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Shingrix',
           theme: ThemeData(
-            primarySwatch: Colors.red,
-            accentColor: Colors.red[300],
             fontFamily: 'Lato',
             pageTransitionsTheme: PageTransitionsTheme(
               builders: {
@@ -37,6 +54,8 @@ class MyApp extends StatelessWidget {
                 TargetPlatform.iOS: CustomPageTransitionBuilder(),
               },
             ),
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red)
+                .copyWith(secondary: Colors.red[300]),
           ),
           // home: SplashScreen(),
           home: auth.isAuth
@@ -52,7 +71,6 @@ class MyApp extends StatelessWidget {
           routes: {
             AuthScreen.routeName: (ctx) => AuthScreen(),
             ForgotPasswordScreen.routeName: (ctx) => ForgotPasswordScreen(),
-            DashBoardScreen.routeName: (ctx) => DashBoardScreen(),
           },
         ),
       ),

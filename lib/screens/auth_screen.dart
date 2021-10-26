@@ -16,19 +16,7 @@ class AuthScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-              // decoration: BoxDecoration(
-              //   gradient: LinearGradient(
-              //     colors: [
-              //       Color.fromRGBO(250, 30, 30, 1).withOpacity(1),
-              //       Color.fromRGBO(225, 225, 225, 1).withOpacity(0.5),
-              //     ],
-              //     begin: Alignment.topLeft,
-              //     end: Alignment.bottomRight,
-              //     stops: [0, 1],
-              //   ),
-              // ),
-              ),
+          Container(),
           SingleChildScrollView(
             child: SizedBox(
               height: deviceSize.height,
@@ -39,7 +27,7 @@ class AuthScreen extends StatelessWidget {
                 children: <Widget>[
                   Flexible(
                     flex: deviceSize.width > 600 ? 2 : 1,
-                    child: AuthCard(),
+                    child: const AuthCard(),
                   ),
                 ],
               ),
@@ -75,11 +63,11 @@ class _AuthCardState extends State<AuthCard>
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('An Error Occurred!'),
+        title: const Text('An Error Occurred!'),
         content: Text(message),
         actions: <Widget>[
           TextButton(
-            child: Text('Okay'),
+            child: const Text('Okay'),
             onPressed: () {
               Navigator.of(ctx).pop();
             },
@@ -139,14 +127,14 @@ class _AuthCardState extends State<AuthCard>
     // final deviceSize = MediaQuery.of(context).size;
     return Center(
       child: Container(
-        padding: EdgeInsets.all(50.0),
+        padding: const EdgeInsets.all(50.0),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email'),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value!.isEmpty || !value.contains('@')) {
@@ -158,7 +146,7 @@ class _AuthCardState extends State<AuthCard>
                   },
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'Password'),
                   obscureText: true,
                   controller: _passwordController,
                   validator: (value) {
@@ -170,36 +158,23 @@ class _AuthCardState extends State<AuthCard>
                     _authData['password'] = value;
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 if (_isLoading)
-                  CircularProgressIndicator()
+                  const CircularProgressIndicator()
                 else
                   ElevatedButton(
-                    child: Text('LOGIN'),
+                    child: const Text('LOGIN'),
                     onPressed: _submit,
-                    // style: ButtonStyle(
-
-                    // ),
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(30),
-                    // ),
-                    // padding:
-                    //     EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
-                    // color: Theme.of(context).primaryColor,
-                    // textColor: Theme.of(context).primaryTextTheme.button!.color,
                   ),
                 TextButton(
-                  child: Text('Forgot Password'),
+                  child: const Text('Forgot Password'),
                   // onPressed: _switchAuthMode,
                   onPressed: () {
                     Navigator.of(context)
                         .pushNamed(ForgotPasswordScreen.routeName);
                   },
-                  // padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
-                  // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  // textColor: Theme.of(context).primaryColor,
                 ),
               ],
             ),

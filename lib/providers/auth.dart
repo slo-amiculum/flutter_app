@@ -74,9 +74,7 @@ class Auth with ChangeNotifier {
         },
       );
       prefs.setString('userData', userData);
-      print('Logged In - $responseData');
-      print('Expiry Date - $_expiryDate');
-      print('Is Auth? - $isAuth');
+      print('User ID - $_userId');
     } catch (error) {
       print('ERROR - $error');
       rethrow;
